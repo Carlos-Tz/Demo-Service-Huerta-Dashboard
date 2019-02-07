@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "xpress-dashboard": {
+    "dashboard-encuesta-servicio": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/xpress-dashboard",
+            "outputPath": "dist/dashboard-encuesta-servicio",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -27,8 +27,7 @@
               "node_modules/materialize-css/dist/css/materialize.min.css"
             ],
             "scripts": [
-              "node_modules/materialize-css/dist/js/materialize.min.js",
-              "node_modules/chart.js/dist/Chart.min.js"
+              "node_modules/materialize-css/dist/js/materialize.min.js"
             ]
           },
           "configurations": {
@@ -61,18 +60,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "xpress-dashboard:build"
+            "browserTarget": "dashboard-encuesta-servicio:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "xpress-dashboard:build:production"
+              "browserTarget": "dashboard-encuesta-servicio:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "xpress-dashboard:build"
+            "browserTarget": "dashboard-encuesta-servicio:build"
           }
         },
         "test": {
@@ -106,7 +105,7 @@
         }
       }
     },
-    "xpress-dashboard-e2e": {
+    "dashboard-encuesta-servicio-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "prefix": "",
@@ -115,11 +114,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "xpress-dashboard:serve"
+            "devServerTarget": "dashboard-encuesta-servicio:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "xpress-dashboard:serve:production"
+              "devServerTarget": "dashboard-encuesta-servicio:serve:production"
             }
           }
         },
@@ -135,5 +134,5 @@
       }
     }
   },
-  "defaultProject": "xpress-dashboard"
+  "defaultProject": "dashboard-encuesta-servicio"
 }

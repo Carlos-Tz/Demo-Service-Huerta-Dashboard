@@ -6,7 +6,8 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AppRoutingModule } from './app-routing.module';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { ChartsModule } from 'ng2-charts';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -28,9 +29,10 @@ import { AuthService } from './shared/auth.service';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     NgxPaginationModule,
-    ChartsModule,
     AngularFireAuthModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    NgxChartsModule,
+    BrowserAnimationsModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

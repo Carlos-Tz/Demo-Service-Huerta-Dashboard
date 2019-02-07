@@ -1,11 +1,11 @@
 export const environment = {
   production: true,
   firebase: {
-    apiKey: "AIzaSyBUVev709JCTWW9zMSnqOkv0mZ4eTrgT-g",
-    authDomain: "xpress-b9608.firebaseapp.com",
-    databaseURL: "https://xpress-b9608.firebaseio.com",
-    projectId: "xpress-b9608",
-    storageBucket: "",
-    messagingSenderId: "905015794232"
+    apiKey: "AIzaSyAqXzmBod74YY3OpYUXQmbuivmiPX9-onQ",
+    authDomain: "encuesta-huerta.firebaseapp.com",
+    databaseURL: "https://encuesta-huerta.firebaseio.com",
+    projectId: "encuesta-huerta",
+    storageBucket: "encuesta-huerta.appspot.com",
+    messagingSenderId: "81949247931"
   }
 };

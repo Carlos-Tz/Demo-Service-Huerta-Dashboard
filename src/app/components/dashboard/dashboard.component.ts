@@ -3,6 +3,7 @@ import { SurveyService } from '../../shared/survey.service';
 import { Survey } from '../../shared/survey';
 
 import { AuthService } from '../../shared/auth.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,31 +13,24 @@ import { AuthService } from '../../shared/auth.service';
 export class DashboardComponent implements OnInit {
   p: number = 1;
   Survey: Survey[];
-  hideNoSurvey: boolean = false;
-  noData: boolean = false;
-  public pieChartLabels = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
-  public pieChartLabels2 = ['Radio', 'Facebook', 'Web', 'Email', 'Otro', 'Ninguno'];
-  public pieChartType = 'pie';
-  public colors = [{ backgroundColor: ['#f44336', '#40c4ff', '#ff9800', '#9575cd ', '#ffeb3b', '#795548', '#cddc39', '#81c784', '#607d8b', '#4caf50'] }];
-  public colors2 = [{ backgroundColor: ['#f44336', '#40c4ff', '#ff9800', '#9575cd ', '#ffeb3b', '#795548'] }];
 
+  surveys=[];
+  dataSource: Observable<any>;
+  chartdata: boolean = false;
+  view: number[] = [300,200];
+  showLegend = false;
+  colorScheme = {
+    domain: ['#f44336', '#40c4ff', '#ff9800', '#9575cd ', '#ffeb3b', '#795548', '#cddc39', '#81c784', '#607d8b', '#4caf50']
+  }
+  showLabels = true;
+  explodeSlices = false;
+  doughnut = false;
 
-  public l1 = [];
-  public atencion = [];
-  public seguimiento = [];
-  public tiempo = [];
-  public satisfaccion = [];
-  public experiencia = [];
-  public recomendacion = [];
-  public medio = [];
-  public barChartData = [];
-  public group1 = 'group1';
-  public group1b = 'group1b';
-  public group1c = 'group1c';
-  public group2 = 'group2';
-  public group3 = 'group3';
-  public group4 = 'group4';
-  public group5 = 'group5';
+  p1 = []; p2 = []; p3 = []; p3b = []; p4 = []; p5 = []; p6 = []; p7 = []; p2a = []; p2b = []; p2c = []; p2d = []; p2e = []; p2f = []; p3a = []; p4a = [];
+  p4b = []; p4c = []; p5a = []; p5b = []; p5c = []; p5d = []; p6a = []; p6b = [];
+  p1Data = []; p2Data = []; p3Data = []; p3bData = []; p4Data = []; p5Data = []; p6Data = []; p7Data = []; p2aData = []; p2bData = []; p2cData = [];
+  p2dData = []; p2eData = []; p2fData = []; p3aData = []; p4aData = []; p4bData = []; p4cData = []; p5aData = []; p5bData = []; p5cData = [];
+  p5dData = []; p6aData = []; p6bData = [];
 
   constructor(
     public surveyApi: SurveyService,
@@ -44,140 +38,151 @@ export class DashboardComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    let s = this.surveyApi.GetSurveysList();
-    s.snapshotChanges().subscribe(data => {
+    this.p1 = []; this.p2 = []; this.p3 = []; this.p3b = []; this.p4 = []; this.p5 = []; this.p6 = []; this.p7 = []; this.p2a = []; this.p2b = [];
+    this.p2c = []; this.p2d = []; this.p2e = []; this.p2f = []; this.p3a = []; this.p4a = []; this.p4b = []; this.p4c = []; this.p5a = [];
+    this.p5b = []; this.p5c = []; this.p5d = []; this.p6a = []; this.p6b = [];
+
+    this.p1Data = []; this.p2Data = []; this.p3Data = []; this.p3bData = []; this.p4Data = []; this.p5Data = []; this.p6Data = [];
+    this.p7Data = []; this.p2aData = []; this.p2bData = []; this.p2cData = []; this.p2dData = []; this.p2eData = []; this.p2fData = [];
+    this.p3aData = []; this.p4aData = []; this.p4bData = []; this.p4cData = []; this.p5aData = []; this.p5bData = []; this.p5cData = [];
+    this.p5dData = []; this.p6aData = []; this.p6bData = [];
+    this.dataSource = this.surveyApi.getAll();
+    this.surveyApi.GetSurveysList().snapshotChanges().subscribe(data => {
       this.Survey = [];
-      data.reverse();
       data.forEach(item => {
         let surv = item.payload.toJSON();
         surv['$key'] = item.key;
         this.Survey.push(surv as Survey);
-        this.l1.push(surv);
       });
-      this.calc();
-    })
+      this.Survey.reverse();
+    }); 
+    this.dataSource.forEach(val => {
+      this.chartdata = true;
+      val.forEach(element => {
+        this.surveys.push(element);
+        if (this.p1[element.group1]) this.p1[element.group1] += 1; else this.p1[element.group1] = 1;
+        if (this.p2[element.group2]) this.p2[element.group2] += 1; else this.p2[element.group2] = 1;
+        if (this.p3[element.group3]) this.p3[element.group3] += 1; else this.p3[element.group3] = 1;
+        if (this.p3b[element.group3b]) this.p3b[element.group3b] += 1; else this.p3b[element.group3b] = 1;
+        if (this.p4[element.group4]) this.p4[element.group4] += 1; else this.p4[element.group4] = 1;
+        if (this.p5[element.group5]) this.p5[element.group5] += 1; else this.p5[element.group5] = 1;
+        if (this.p6[element.group6]) this.p6[element.group6] += 1; else this.p6[element.group6] = 1;
+        if (this.p7[element.group7]) this.p7[element.group7] += 1; else this.p7[element.group7] = 1;
+        if (this.p2a[element.group8]) this.p2a[element.group8] += 1; else this.p2a[element.group8] = 1;
+        if (this.p2b[element.group9]) this.p2b[element.group9] += 1; else this.p2b[element.group9] = 1;
+        if (this.p2c[element.group10]) this.p2c[element.group10] += 1; else this.p2c[element.group10] = 1;
+        if (this.p2d[element.group11]) this.p2d[element.group11] += 1; else this.p2d[element.group11] = 1;
+        if (this.p2e[element.group12]) this.p2e[element.group12] += 1; else this.p2e[element.group12] = 1;
+        if (this.p2f[element.group13]) this.p2f[element.group13] += 1; else this.p2f[element.group13] = 1;
+        if (this.p3a[element.group14]) this.p3a[element.group14] += 1; else this.p3a[element.group14] = 1;
+        if (this.p4a[element.group15]) this.p4a[element.group15] += 1; else this.p4a[element.group15] = 1;
+        if (this.p4b[element.group16]) this.p4b[element.group16] += 1; else this.p4b[element.group16] = 1;
+        if (this.p4c[element.group17]) this.p4c[element.group17] += 1; else this.p4c[element.group17] = 1;
+        if (this.p5a[element.group18]) this.p5a[element.group18] += 1; else this.p5a[element.group18] = 1;
+        if (this.p5b[element.group19]) this.p5b[element.group19] += 1; else this.p5b[element.group19] = 1;
+        if (this.p5c[element.group20]) this.p5c[element.group20] += 1; else this.p5c[element.group20] = 1;
+        if (this.p5d[element.group21]) this.p5d[element.group21] += 1; else this.p5d[element.group21] = 1;
+        if (this.p6a[element.group22]) this.p6a[element.group22] += 1; else this.p6a[element.group22] = 1;
+        if (this.p6b[element.group23]) this.p6b[element.group23] += 1; else this.p6b[element.group23] = 1;
 
-
+      });
+      for (var key in this.p1) {
+        let singleentry = { name: key, value: this.p1[key] }
+        this.p1Data.push(singleentry);
+      }
+      for (var key in this.p2) {
+        let singleentry = { name: key, value: this.p2[key] }
+        this.p2Data.push(singleentry);
+      }
+      for (var key in this.p3) {
+        let singleentry = { name: key, value: this.p3[key] }
+        this.p3Data.push(singleentry);
+      }
+      for (var key in this.p3b) {
+        let singleentry = { name: key, value: this.p3b[key] }
+        this.p3bData.push(singleentry);
+      }
+      for (var key in this.p4) {
+        let singleentry = { name: key, value: this.p4[key] }
+        this.p4Data.push(singleentry);
+      }
+      for (var key in this.p5) {
+        let singleentry = { name: key, value: this.p5[key] }
+        this.p5Data.push(singleentry);
+      }
+      for (var key in this.p6) {
+        let singleentry = { name: key, value: this.p6[key] }
+        this.p6Data.push(singleentry);
+      }
+      for (var key in this.p7) {
+        let singleentry = { name: key, value: this.p7[key] }
+        this.p7Data.push(singleentry);
+      }
+      for (var key in this.p2a) {
+        let singleentry = { name: key, value: this.p2a[key] }
+        this.p2aData.push(singleentry);
+      }
+      for (var key in this.p2b) {
+        let singleentry = { name: key, value: this.p2b[key] }
+        this.p2bData.push(singleentry);
+      }
+      for (var key in this.p2c) {
+        let singleentry = { name: key, value: this.p2c[key] }
+        this.p2cData.push(singleentry);
+      }
+      for (var key in this.p2d) {
+        let singleentry = { name: key, value: this.p2d[key] }
+        this.p2dData.push(singleentry);
+      }
+      for (var key in this.p2e) {
+        let singleentry = { name: key, value: this.p2e[key] }
+        this.p2eData.push(singleentry);
+      }
+      for (var key in this.p2f) {
+        let singleentry = { name: key, value: this.p2f[key] }
+        this.p2fData.push(singleentry);
+      }
+      for (var key in this.p3a) {
+        let singleentry = { name: key, value: this.p3a[key] }
+        this.p3aData.push(singleentry);
+      }
+      for (var key in this.p4a) {
+        let singleentry = { name: key, value: this.p4a[key] }
+        this.p4aData.push(singleentry);
+      }
+      for (var key in this.p4b) {
+        let singleentry = { name: key, value: this.p4b[key] }
+        this.p4bData.push(singleentry);
+      }
+      for (var key in this.p4c) {
+        let singleentry = { name: key, value: this.p4c[key] }
+        this.p4cData.push(singleentry);
+      }
+      for (var key in this.p5a) {
+        let singleentry = { name: key, value: this.p5a[key] }
+        this.p5aData.push(singleentry);
+      }
+      for (var key in this.p5b) {
+        let singleentry = { name: key, value: this.p5b[key] }
+        this.p5bData.push(singleentry);
+      }
+      for (var key in this.p5c) {
+        let singleentry = { name: key, value: this.p5c[key] }
+        this.p5cData.push(singleentry);
+      }
+      for (var key in this.p5d) {
+        let singleentry = { name: key, value: this.p5d[key] }
+        this.p5dData.push(singleentry);
+      }
+      for (var key in this.p6a) {
+        let singleentry = { name: key, value: this.p6a[key] }
+        this.p6aData.push(singleentry);
+      }
+      for (var key in this.p6b) {
+        let singleentry = { name: key, value: this.p6b[key] }
+        this.p6bData.push(singleentry);
+      }
+      
+    });
   }
-
-  calc() {
-    let g1 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-    let g1b = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-    let g1c = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-    let g2 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-    let g3 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-    let g4 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-    let g5 = [0, 0, 0, 0, 0, 0];
-    this.l1.forEach(it => {
-      switch (it.group1) {
-        case '1': g1[0]++; break;
-        case '2': g1[1]++; break;
-        case '3': g1[2]++; break;
-        case '4': g1[3]++; break;
-        case '5': g1[4]++; break;
-        case '6': g1[5]++; break;
-        case '7': g1[6]++; break;
-        case '8': g1[7]++; break;
-        case '9': g1[8]++; break;
-        case '10': g1[9]++; break;
-        default: break;
-      }
-      switch (it.group1b) {
-        case '1': g1b[0]++; break;
-        case '2': g1b[1]++; break;
-        case '3': g1b[2]++; break;
-        case '4': g1b[3]++; break;
-        case '5': g1b[4]++; break;
-        case '6': g1b[5]++; break;
-        case '7': g1b[6]++; break;
-        case '8': g1b[7]++; break;
-        case '9': g1b[8]++; break;
-        case '10': g1b[9]++; break;
-        default: break;
-      }
-      switch (it.group1c) {
-        case '1': g1c[0]++; break;
-        case '2': g1c[1]++; break;
-        case '3': g1c[2]++; break;
-        case '4': g1c[3]++; break;
-        case '5': g1c[4]++; break;
-        case '6': g1c[5]++; break;
-        case '7': g1c[6]++; break;
-        case '8': g1c[7]++; break;
-        case '9': g1c[8]++; break;
-        case '10': g1c[9]++; break;
-        default: break;
-      }
-      switch (it.group2) {
-        case '1': g2[0]++; break;
-        case '2': g2[1]++; break;
-        case '3': g2[2]++; break;
-        case '4': g2[3]++; break;
-        case '5': g2[4]++; break;
-        case '6': g2[5]++; break;
-        case '7': g2[6]++; break;
-        case '8': g2[7]++; break;
-        case '9': g2[8]++; break;
-        case '10': g2[9]++; break;
-        default: break;
-      }
-      switch (it.group3) {
-        case '1': g3[0]++; break;
-        case '2': g3[1]++; break;
-        case '3': g3[2]++; break;
-        case '4': g3[3]++; break;
-        case '5': g3[4]++; break;
-        case '6': g3[5]++; break;
-        case '7': g3[6]++; break;
-        case '8': g3[7]++; break;
-        case '9': g3[8]++; break;
-        case '10': g3[9]++; break;
-        default: break;
-      }
-      switch (it.group4) {
-        case '1': g4[0]++; break;
-        case '2': g4[1]++; break;
-        case '3': g4[2]++; break;
-        case '4': g4[3]++; break;
-        case '5': g4[4]++; break;
-        case '6': g4[5]++; break;
-        case '7': g4[6]++; break;
-        case '8': g4[7]++; break;
-        case '9': g4[8]++; break;
-        case '10': g4[9]++; break;
-        default: break;
-      }
-      switch (it.group5) {
-        case 'Radio': g5[0]++; break;
-        case 'Facebook': g5[1]++; break;
-        case 'Web': g5[2]++; break;
-        case 'email': g5[3]++; break;
-        case 'otro': g5[4]++; break;
-        case 'ninguno': g5[5]++; break;
-        default: break;
-      }
-    })
-    for (var _i = 0; _i < 10; _i++) {
-      let l = this.Survey.length+1;
-      if (g1[_i] >= l) { g1[_i] = g1[_i] / l; }
-      if (g1b[_i] >= l) { g1b[_i] = g1b[_i] / l; }
-      if (g1c[_i] >= l) { g1c[_i] = g1c[_i] / l; }
-      if (g2[_i] >= l) { g2[_i] = g2[_i] / l; }
-      if (g3[_i] >= l) { g3[_i] = g3[_i] / l; }
-      if (g4[_i] >= l) { g4[_i] = g4[_i] / l; }
-      if (_i < 6) {
-        if (g5[_i] >= l) { g5[_i] = g5[_i] / l; }
-      }
-    }
-
-    this.atencion = g1;
-    this.seguimiento = g1b;
-    this.tiempo = g1c;
-    this.satisfaccion = g2;
-    this.experiencia = g3;
-    this.recomendacion = g4;
-    this.medio = g5;
-  }
-
-
 }
