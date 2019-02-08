@@ -14,7 +14,8 @@ export class DashboardComponent implements OnInit {
   p: number = 1;
   Survey: Survey[];
 
-  filterKey: string;
+ // public filter_Key: string;
+  filter_key = '';
   surveys=[];
   dataSource: Observable<any>;
   chartdata: boolean = false;
@@ -187,12 +188,5 @@ export class DashboardComponent implements OnInit {
     });
   }
   
-  /*applyFilter(){
-    
-    this.Survey = this.Survey.filter(res =>{
-      console.log(res.name.match(this.filterKey));
-      return res.name.match(this.filterKey);
-    });
-    //this.Survey.filter = this.filterKey.trim().toLowerCase();
-  }*/
+  
 }

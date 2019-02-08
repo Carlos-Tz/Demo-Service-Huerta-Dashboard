@@ -166,7 +166,7 @@
         
         <div class="row col s12 m4 offset-m8 input-field inline">
           <label for="search" class="black-text" >Buscar</label>
-          <input id="search" type="text" [(ngModel)]="filterkey" autocomplete="off" value="">
+          <input id="search" name="filter_key" type="text" [(ngModel)]="filter_key" autocomplete="off" value="">
         </div>
         
         <div class="card-content">
@@ -181,7 +181,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let survey of Survey | filter: filterkey | paginate: {itemsPerPage:5,currentPage:p};let i=index; ">
+              <tr *ngFor="let survey of Survey | filter:filter_key | paginate: {itemsPerPage:5,currentPage:p};let i=index; ">
                 <td>Nombre: <b>{{survey.name}}</b><br>No. Orden: <b>{{survey.order}}</b><br>Fecha: <b>{{survey.date}}</b> <br>Asesor: <b>{{survey.adviser}}</b></td>
                 <td><b>{{survey.group3}}</b> ¿Por qué?: {{survey.group3b}}</td>
                 <td>{{survey.group7}}</td>
