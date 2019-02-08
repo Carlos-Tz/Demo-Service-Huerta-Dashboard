@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -16,12 +17,14 @@ import { LoginComponent } from './components/login/login.component';
 import { environment } from '../environments/environment';
 
 import { AuthService } from './shared/auth.service';
+import { FilterPipe } from './pipes/filter.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-    LoginComponent
+    LoginComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
@@ -32,7 +35,8 @@ import { AuthService } from './shared/auth.service';
     AngularFireAuthModule,
     AngularFirestoreModule,
     NgxChartsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FormsModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

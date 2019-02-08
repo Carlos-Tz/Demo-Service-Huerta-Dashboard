@@ -14,10 +14,11 @@ export class DashboardComponent implements OnInit {
   p: number = 1;
   Survey: Survey[];
 
+  filterKey: string;
   surveys=[];
   dataSource: Observable<any>;
   chartdata: boolean = false;
-  view: number[] = [300,200];
+  view: number[] = [400,300];
   showLegend = false;
   colorScheme = {
     domain: ['#f44336', '#40c4ff', '#ff9800', '#9575cd ', '#ffeb3b', '#795548', '#cddc39', '#81c784', '#607d8b', '#4caf50']
@@ -185,4 +186,13 @@ export class DashboardComponent implements OnInit {
       
     });
   }
+  
+  /*applyFilter(){
+    
+    this.Survey = this.Survey.filter(res =>{
+      console.log(res.name.match(this.filterKey));
+      return res.name.match(this.filterKey);
+    });
+    //this.Survey.filter = this.filterKey.trim().toLowerCase();
+  }*/
 }
