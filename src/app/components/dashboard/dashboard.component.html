@@ -173,19 +173,20 @@
           <table id="dataTable">
             <thead>
               <tr>
-                <th>Información</th>
-                <th>¿Se completo todo el trabajo solicitado en esta visita?</th>
-                <th>Comentarios y/o sugerencias</th>
-                <th>Satisfacción con la calidad del auto</th>
-
+                <th>Nombre</th>
+                <th>No. de Orden</th>
+                <th>Fecha</th>
+                <th>Asesor</th>
+                <th>Más...</th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let survey of Survey | filter:filter_key | paginate: {itemsPerPage:5,currentPage:p};let i=index; ">
-                <td>Nombre: <b>{{survey.name}}</b><br>No. Orden: <b>{{survey.order}}</b><br>Fecha: <b>{{survey.date}}</b> <br>Asesor: <b>{{survey.adviser}}</b></td>
-                <td><b>{{survey.group3}}</b> ¿Por qué?: {{survey.group3b}}</td>
-                <td>{{survey.group7}}</td>
-                <td>{{survey.group23}}</td>
+                <td>{{survey.name}}</td>
+                <td>{{survey.order}}</td>
+                <td>{{survey.date}}</td>
+                <td>{{survey.adviser}}</td>
+                <td><a routerLink="/show-survey/{{survey.$key}}" class="btn-floating btn-small waves-effect waves-light teal">+</a></td>
               </tr>
             </tbody>
           </table>

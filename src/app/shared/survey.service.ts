@@ -29,13 +29,10 @@ export class SurveyService {
         })
       );
   }
-  /*
-  filter_by(filter: string){
-    this.surveysList = this.db.list('surveys-list', {
-      query:{
-        orderByChild: 'name',
-        equalTo: filter
-      }
-    }) as AngularFireList<any[]>;
-  }*/
+
+  getSurvey(key: string){
+    this.surveyObject = this.db.object('surveys-list/'+ key);
+    return this.surveyObject;
+  }
+  
 }

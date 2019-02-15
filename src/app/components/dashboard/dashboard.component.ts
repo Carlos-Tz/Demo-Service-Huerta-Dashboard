@@ -14,12 +14,12 @@ export class DashboardComponent implements OnInit {
   p: number = 1;
   Survey: Survey[];
 
- // public filter_Key: string;
+  // public filter_Key: string;
   filter_key = '';
-  surveys=[];
+  surveys = [];
   dataSource: Observable<any>;
   chartdata: boolean = false;
-  view: number[] = [400,300];
+  view: number[] = [400, 300];
   showLegend = false;
   colorScheme = {
     domain: ['#f44336', '#40c4ff', '#ff9800', '#9575cd ', '#ffeb3b', '#795548', '#cddc39', '#81c784', '#607d8b', '#4caf50']
@@ -57,11 +57,12 @@ export class DashboardComponent implements OnInit {
         this.Survey.push(surv as Survey);
       });
       this.Survey.reverse();
-    }); 
+    });
     this.dataSource.forEach(val => {
       this.chartdata = true;
       val.forEach(element => {
         this.surveys.push(element);
+
         if (this.p1[element.group1]) this.p1[element.group1] += 1; else this.p1[element.group1] = 1;
         if (this.p2[element.group2]) this.p2[element.group2] += 1; else this.p2[element.group2] = 1;
         if (this.p3[element.group3]) this.p3[element.group3] += 1; else this.p3[element.group3] = 1;
@@ -70,22 +71,22 @@ export class DashboardComponent implements OnInit {
         if (this.p5[element.group5]) this.p5[element.group5] += 1; else this.p5[element.group5] = 1;
         if (this.p6[element.group6]) this.p6[element.group6] += 1; else this.p6[element.group6] = 1;
         if (this.p7[element.group7]) this.p7[element.group7] += 1; else this.p7[element.group7] = 1;
-        if (this.p2a[element.group8]) this.p2a[element.group8] += 1; else this.p2a[element.group8] = 1;
-        if (this.p2b[element.group9]) this.p2b[element.group9] += 1; else this.p2b[element.group9] = 1;
-        if (this.p2c[element.group10]) this.p2c[element.group10] += 1; else this.p2c[element.group10] = 1;
-        if (this.p2d[element.group11]) this.p2d[element.group11] += 1; else this.p2d[element.group11] = 1;
-        if (this.p2e[element.group12]) this.p2e[element.group12] += 1; else this.p2e[element.group12] = 1;
-        if (this.p2f[element.group13]) this.p2f[element.group13] += 1; else this.p2f[element.group13] = 1;
-        if (this.p3a[element.group14]) this.p3a[element.group14] += 1; else this.p3a[element.group14] = 1;
-        if (this.p4a[element.group15]) this.p4a[element.group15] += 1; else this.p4a[element.group15] = 1;
-        if (this.p4b[element.group16]) this.p4b[element.group16] += 1; else this.p4b[element.group16] = 1;
-        if (this.p4c[element.group17]) this.p4c[element.group17] += 1; else this.p4c[element.group17] = 1;
-        if (this.p5a[element.group18]) this.p5a[element.group18] += 1; else this.p5a[element.group18] = 1;
-        if (this.p5b[element.group19]) this.p5b[element.group19] += 1; else this.p5b[element.group19] = 1;
-        if (this.p5c[element.group20]) this.p5c[element.group20] += 1; else this.p5c[element.group20] = 1;
-        if (this.p5d[element.group21]) this.p5d[element.group21] += 1; else this.p5d[element.group21] = 1;
-        if (this.p6a[element.group22]) this.p6a[element.group22] += 1; else this.p6a[element.group22] = 1;
-        if (this.p6b[element.group23]) this.p6b[element.group23] += 1; else this.p6b[element.group23] = 1;
+        if (element.group8) { if (this.p2a[element.group8]) this.p2a[element.group8] += 1; else this.p2a[element.group8] = 1; }
+        if (element.group9) { if (this.p2b[element.group9]) this.p2b[element.group9] += 1; else this.p2b[element.group9] = 1; }
+        if (element.group10) { if (this.p2c[element.group10]) this.p2c[element.group10] += 1; else this.p2c[element.group10] = 1; }
+        if (element.group11) { if (this.p2d[element.group11]) this.p2d[element.group11] += 1; else this.p2d[element.group11] = 1; }
+        if (element.group12) { if (this.p2e[element.group12]) this.p2e[element.group12] += 1; else this.p2e[element.group12] = 1; }
+        if (element.group13) { if (this.p2f[element.group13]) this.p2f[element.group13] += 1; else this.p2f[element.group13] = 1; }
+        if (element.group14) { if (this.p3a[element.group14]) this.p3a[element.group14] += 1; else this.p3a[element.group14] = 1; }
+        if (element.group15) { if (this.p4a[element.group15]) this.p4a[element.group15] += 1; else this.p4a[element.group15] = 1; }
+        if (element.group16) { if (this.p4b[element.group16]) this.p4b[element.group16] += 1; else this.p4b[element.group16] = 1; }
+        if (element.group17) { if (this.p4c[element.group17]) this.p4c[element.group17] += 1; else this.p4c[element.group17] = 1; }
+        if (element.group18) { if (this.p5a[element.group18]) this.p5a[element.group18] += 1; else this.p5a[element.group18] = 1; }
+        if (element.group19) { if (this.p5b[element.group19]) this.p5b[element.group19] += 1; else this.p5b[element.group19] = 1; }
+        if (element.group20) { if (this.p5c[element.group20]) this.p5c[element.group20] += 1; else this.p5c[element.group20] = 1; }
+        if (element.group21) { if (this.p5d[element.group21]) this.p5d[element.group21] += 1; else this.p5d[element.group21] = 1; }
+        if (element.group22) { if (this.p6a[element.group22]) this.p6a[element.group22] += 1; else this.p6a[element.group22] = 1; }
+        if (element.group23) { if (this.p6b[element.group23]) this.p6b[element.group23] += 1; else this.p6b[element.group23] = 1; }
 
       });
       for (var key in this.p1) {
@@ -184,9 +185,9 @@ export class DashboardComponent implements OnInit {
         let singleentry = { name: key, value: this.p6b[key] }
         this.p6bData.push(singleentry);
       }
-      
+
     });
   }
-  
-  
+
+
 }

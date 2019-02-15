@@ -18,13 +18,15 @@ import { environment } from '../environments/environment';
 
 import { AuthService } from './shared/auth.service';
 import { FilterPipe } from './pipes/filter.pipe';
+import { ShowSurveyComponent } from './components/show-survey/show-survey.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     LoginComponent,
-    FilterPipe
+    FilterPipe,
+    ShowSurveyComponent
   ],
   imports: [
     BrowserModule,
