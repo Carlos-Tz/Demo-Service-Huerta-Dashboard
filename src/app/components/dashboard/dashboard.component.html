@@ -163,29 +163,77 @@
     <div class="col s12">
       <div class="card">
         <span class="card-title"><b>Datos de los Clientes</b></span>
-        
+        <!-- 
         <div class="row col s12 m4 offset-m8 input-field inline">
           <label for="search" class="black-text" >Buscar</label>
           <input id="search" name="filter_key" type="text" [(ngModel)]="filter_key" autocomplete="off" value="">
         </div>
-        
-        <div class="card-content">
-          <table id="dataTable">
+         -->
+        <div class="card-content" *ngIf="data_">
+          <table datatable [dtOptions]="dtOptions" class="row-border hover">
             <thead>
               <tr>
                 <th>Nombre</th>
                 <th>No. de Orden</th>
                 <th>Fecha</th>
                 <th>Asesor</th>
+                <th style="display:none">Clasifique su experiencia de servicio en general que recibió en esta concesionaria</th>
+                <th style="display:none">¿Que tan satisfecho está con su Asesor de Servicio?</th>
+                <th style="display:none">¿Se completo todo el trabajo solicitado en esta visita?</th>
+                <th style="display:none">¿Por qué razón?</th>
+                <th style="display:none">¿Qué tan satisfecho está con el tiempo transcurrido para que el servicio fuera completado?</th>
+                <th style="display:none">¿Cuál es su nivel de satisfacción con las instalaciones de la concesionaria y amenidades ofrecidas?</th>
+                <th style="display:none">¿Qué probabilidad hay de que su próxima reparación o servicio sea en esta misma concesionaria?</th>
+                <th style="display:none">¿Qué podría hacer la concesionaria para mejorar?</th>
+                <th style="display:none">La cortesía, responsabilidad y honestidad por parte de nuestros asesores de servicio.</th>
+                <th style="display:none">Revisión de los componentes del vehículo y explicación de los trabajos</th>
+                <th style="display:none">Mantenerlo informado del avance del trabajo o servicio</th>
+                <th style="display:none">La condición del vehículo en la entrega</th>
+                <th style="display:none">La explicación de los trabajos realizados</th>
+                <th style="display:none">Explicación de la factura y lo justo del cobro</th>
+                <th style="display:none">¿Por qué motivo?</th>
+                <th style="display:none">Facilidad y disponibilidad para agendar cita</th>
+                <th style="display:none">Tiempo en la entrega de su vehículo</th>
+                <th style="display:none">Tiempo total requerido para completar el servicio en su vehículo</th>
+                <th style="display:none">Facilidad para entrar y salir</th>
+                <th style="display:none">Limpieza de la concesionari</th>
+                <th style="display:none">Comodidad en el área de espera</th>
+                <th style="display:none">Amenidades ofrecidas</th>
+                <th style="display:none">¿Con la calidad del auto?</th>
+                <th style="display:none">¿Por qué?</th>
                 <th>Más...</th>
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let survey of Survey | filter:filter_key | paginate: {itemsPerPage:5,currentPage:p};let i=index; ">
+              <tr *ngFor="let survey of Survey;let i=index; ">
                 <td>{{survey.name}}</td>
                 <td>{{survey.order}}</td>
                 <td>{{survey.date}}</td>
                 <td>{{survey.adviser}}</td>
+                <td style="display:none">{{survey.group1}}</td>
+                <td style="display:none">{{survey.group2}}</td>
+                <td style="display:none">{{survey.group3}}</td>
+                <td style="display:none">{{survey.group3b}}</td>
+                <td style="display:none">{{survey.group4}}</td>
+                <td style="display:none">{{survey.group5}}</td>
+                <td style="display:none">{{survey.group6}}</td>
+                <td style="display:none">{{survey.group7}}</td>
+                <td style="display:none">{{survey.group8}}</td>
+                <td style="display:none">{{survey.group9}}</td>
+                <td style="display:none">{{survey.group10}}</td>
+                <td style="display:none">{{survey.group11}}</td>
+                <td style="display:none">{{survey.group12}}</td>
+                <td style="display:none">{{survey.group13}}</td>
+                <td style="display:none">{{survey.group14}}</td>
+                <td style="display:none">{{survey.group15}}</td>
+                <td style="display:none">{{survey.group16}}</td>
+                <td style="display:none">{{survey.group17}}</td>
+                <td style="display:none">{{survey.group18}}</td>
+                <td style="display:none">{{survey.group19}}</td>
+                <td style="display:none">{{survey.group20}}</td>
+                <td style="display:none">{{survey.group21}}</td>
+                <td style="display:none">{{survey.group22}}</td>
+                <td style="display:none">{{survey.group23}}</td>
                 <td><a routerLink="/show-survey/{{survey.$key}}" class="btn-floating btn-small waves-effect waves-light teal">+</a></td>
               </tr>
             </tbody>
@@ -195,4 +243,4 @@
     </div>
   </div>
 </div>
-<pagination-controls (pageChange)="p = $event" autoHide="true" responsive="true"></pagination-controls>
+<!-- <pagination-controls (pageChange)="p = $event" autoHide="true" responsive="true"></pagination-controls> -->

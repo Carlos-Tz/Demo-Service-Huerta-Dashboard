@@ -27,7 +27,7 @@ export class ShowSurveyComponent implements OnInit {
   ngOnInit() {
     const key = this.actRouter.snapshot.paramMap.get('key');
     this.surveyApi.getSurvey(key).valueChanges().subscribe(data => {
-      console.log(data);
+    //  console.log(data);
       this.name = data.name;
       this.group1 = data.group1;
       this.group2 = data.group2;
